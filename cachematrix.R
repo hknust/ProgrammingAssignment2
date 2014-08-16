@@ -3,7 +3,7 @@
 ## (caching) the result of the first invocation. 
 
 ## makeCacheMatrix takes an argument of type matrix and
-## returns a list with 4 functions, setMatrix, getMatrix,
+## returns a list with 4 functions: setMatrix, getMatrix,
 ## setInverse, and getInverse that can be used to extract 
 ## the original matrix or the inverse ot it.
 
@@ -37,12 +37,10 @@ makeCacheMatrix <- function(x = matrix())
 cacheSolve <- function(x, ...) 
 {
   ## Return a matrix that is the inverse of 'x'
-  cachedInverse <- x$getInverse()
-
-  if (!is.null(cachedInverse))
+  if (!is.null(x$getInverse()))
   {
     message("Using cached inverse")
-    return(cachedInverse)
+    return(x$getInverse())
   }
 
   x$setInverse(solve(x$getMatrix()))
